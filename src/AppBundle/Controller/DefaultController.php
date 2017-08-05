@@ -13,10 +13,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $user = $this->getUser();
-
-        return $this->render('AppBundle::index.html.twig', array(
-                'user' => $user
-        ));
+        return $this->render('AppBundle::index.html.twig');
     }
 }

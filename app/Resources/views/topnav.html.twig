@@ -1,3 +1,19 @@
 <div>
-    --- TOP NAV ---
+    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+        <a href="{{ path('homepage', {'_switch_user': '_exit'}) }}">Exit impersonation</a>
+    {% endif %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin_homepage') }}" class="btn btn-danger">Admin</a>
+        {% endif %}
+
+        <p>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</p>
+
+        <a href="{{ path('fos_user_security_logout') }}"><span class="fa fa-sign-out"></span> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+    {% else %}
+        <a href="{{ path('fos_user_registration_register') }}"> {{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+        <a href="{{ path('fos_user_security_login') }}"><span class="fa fa-sign-in"></span> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+
+    <p>--- TOP NAV ---</p>
 </div>
