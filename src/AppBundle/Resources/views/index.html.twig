@@ -2,4 +2,5 @@
 
 {% block content %}
     <p>Welcome {{ user.username }}!</p>
+    <a href="{{ path('fos_user_security_logout') }}">Logout</a>
 {% endblock %}
