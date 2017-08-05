@@ -4,9 +4,7 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-4": {
-            "AppBundle\\": "src/AppBundle"
-        },
+        "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "autoload-dev": {
@@ -47,7 +45,9 @@
     },
     "config": {
         "bin-dir": "bin",
-        "sort-packages": true
+        "platform": {
+            "php": "5.3.9"
+        }
     },
     "extra": {
         "symfony-app-dir": "app",
