@@ -14,4 +14,3 @@
 *.log
 .idea/workspace.xml
 app/logs/dev.log
-/vendor/
