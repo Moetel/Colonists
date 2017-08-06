@@ -16,7 +16,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/src/AdminBundle/Ressources/views/a_news.html.twig", name="a_news")
+     * @Route("/news", name="a_news")
      */
     public function a_newsAction()
     {
@@ -24,7 +24,7 @@ class DefaultController extends Controller
     }
     
       /**
-     * @Route("/src/AdminBundle/Ressources/views/a_users.html.twig", name="a_users")
+     * @Route("/users", name="a_users")
      */
     public function a_usersAction()
     {
