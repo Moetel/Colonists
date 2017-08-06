@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-ADMIN ONLY !
+    {% include 'AdminBundle::a_menu.html.twig' %}
+    ADMIN ONLY !
     <a href="{{ path('homepage') }}">Home</a>
 {% endblock %}
