@@ -8,13 +8,13 @@
     {% endif %}
     
 <div class="row">
-    <div class="col-lg-offset-5 col-lg-2">
+    <div class="col-md-2">
     <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
         <h2 class="form-singnin-heading">Please sign in</h2>
             <label class="sr-only" for="username">{{ 'security.login.username'|trans }}</label>
-            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Username" />
 
             <label class="sr-only" for="password">{{ 'security.login.password'|trans }}</label>
             <input class="form-control" type="password" id="password" name="_password" required="required" placeholder="Password"/>
