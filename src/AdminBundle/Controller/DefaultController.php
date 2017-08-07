@@ -4,6 +4,7 @@ namespace AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -28,7 +29,26 @@ class DefaultController extends Controller
      */
     public function manageUsersAction()
     {
-        return $this->render('AdminBundle::manage_users.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $em->getRepository('AppBundle:User')->getUsersOrderByAlpha();
+
+        return $this->render('AdminBundle::manage_users.html.twig', array('users' => $users));
+    }
+
+    /**
+     * @Route("/manage-user/{user_id}", name="manage_user")
+     */
+    public function manageUserAction(Request $request, $user_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('AppBundle:User')->find($user_id);
+        if (!$user) {
+            return $this->redirectToRoute('manage_users');
+        }
+
+        return $this->render('AdminBundle::manage_user.html.twig', array('user' => $user));
     }
     
 }

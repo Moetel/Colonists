@@ -2,5 +2,21 @@
 
 {% block content_page %}
     <h1>Users Manager</h1>
-    
+
+    <table>
+        <thead>
+            <th>Username</th>
+            <th>Created Date</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td><a href="{{ path('manage_user', {'user_id': user.id}) }}">{{ user.username }}</a></td>
+                    <td>{{ user.createdAt|date('d/m/Y') }}</td>
+                    <td><a href="{{ path('manage_user', {'user_id': user.id}) }}"><span class="fa fa-edit"></span></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

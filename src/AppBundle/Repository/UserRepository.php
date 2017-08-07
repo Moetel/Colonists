@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function getUsersOrderByAlpha()
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.username', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }
