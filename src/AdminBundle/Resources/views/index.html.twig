@@ -1,7 +1,15 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    
-    {% include 'AdminBundle::menu.html.twig' %}
-    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-2">
+                {% include 'AdminBundle::menu.html.twig' %}
+            </div>
+
+            <div class="col-md-10">
+                {% block content_page %}{% endblock %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

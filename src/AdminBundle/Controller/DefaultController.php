@@ -16,19 +16,19 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/news", name="a_news")
+     * @Route("/manage-news", name="manage_news")
      */
-    public function a_newsAction()
+    public function manageNewsAction()
     {
-        return $this->render('AdminBundle::a_news.html.twig');
+        return $this->render('AdminBundle::manage_news.html.twig');
     }
     
       /**
-     * @Route("/users", name="a_users")
+     * @Route("/manage-users", name="manage_users")
      */
-    public function a_usersAction()
+    public function manageUsersAction()
     {
-        return $this->render('AdminBundle::a_users.html.twig');
+        return $this->render('AdminBundle::manage_users.html.twig');
     }
     
 }
