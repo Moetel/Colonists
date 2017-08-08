@@ -1,20 +1,31 @@
 {% extends 'AdminBundle::index.html.twig' %}
 
 {% block content_page %}
-    <h1>News Manager</h1>
+    <h1>List News</h1>
+
+    <a href="{{ path('create_news') }}" class="btn btn-success">Create News</a>
 
     <table>
         <thead>
             <th>Title</th>
+            <th>Content</th>
+            <th>Is Published</th>
+            <th>Published Date</th>
             <th>Created Date</th>
             <th>Action</th>
         </thead>
         <tbody>
             {% for article in news %}
                 <tr>
-                    <td><a href="{{ path('edit_news', {'article_id': article.id}) }}">{{ article.title }}</a></td>
+                    <td><a href="{{ path('edit_news', {'news_id': article.id}) }}">{{ article.title }}</a></td>
+                    <td>{{ article.content|slice(0, 30) }}{% if article.content|length > 30 %}...{% endif %}</td>
+                    <td>{% if article.isPublished %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-remove"></span>{% endif %}</td>
+                    <td>{% if article.publishedAt is not null %}{{ article.publishedAt|date('d/m/Y') }}{% else %}Not Published{% endif %}</td>
                     <td>{{ article.createdAt|date('d/m/Y') }}</td>
-                    <td><a href="{{ path('edit_news', {'article_id': article.id}) }}"><span class="fa fa-edit"></span></a></td>
+                    <td>
+                        <a href="{{ path('edit_news', {'news_id': article.id}) }}"><span class="fa fa-edit"></span></a>
+                        <a href="{{ path('remove_news', {'news_id': article.id}) }}"><span class="fa fa-remove"></span></a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

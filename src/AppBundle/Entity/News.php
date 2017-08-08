@@ -134,6 +134,11 @@ class News
     {
         $this->isPublished = $isPublished;
 
+        if ($isPublished == true)
+            $this->publishedAt = new \DateTime();
+        else
+            $this->publishedAt = null;
+
         return $this;
     }
 
