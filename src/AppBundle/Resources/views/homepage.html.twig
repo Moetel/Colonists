@@ -3,6 +3,9 @@
 {% block content_page %}
     <p>CONTENT HOMEPAGE</p>
     
-    {#{% include 'AppBundle::block_news.html.twig' %}#}
-    
+    {# {% include 'AppBundle::block_news.html.twig' %} #}
+    {% for article in news %}
+        <p>{{ article.id }}</p>
+    {% endfor %}    
+        
 {% endblock %} 
