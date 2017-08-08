@@ -12,19 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class NewsRepository extends EntityRepository
 {
-    public function getNewestNewsDesc()
+    public function getLatestNewsOrderByPublishedAt()
     {
         return $this->createQueryBuilder('n')
-            ->orderBy('n.id', 'DESC')
+            ->where('n.isPublished = 1')
+            ->orderBy('n.publishedAt', 'DESC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }
 
-    public function getAllNewsDesc()
+    public function getNewsOrderByCreatedAt()
     {
         return $this->createQueryBuilder('n')
-            ->orderBy('n.id', 'DESC')
+            ->orderBy('n.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }

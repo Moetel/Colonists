@@ -17,57 +17,57 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/manage-news", name="manage_news")
+     * @Route("/list-news", name="list_news")
      */
-    public function manageNewsAction()
+    public function listNewsAction()
     {
         $em = $this->getDoctrine()->getManager();
         
-        $news = $em->getRepository('AppBundle:News')->getAllNewsDesc();
+        $news = $em->getRepository('AppBundle:News')->getNewsOrderByCreatedAt();
         
-        return $this->render('AdminBundle::manage_news.html.twig', array('news' => $news));
+        return $this->render('AdminBundle::list_news.html.twig', array('news' => $news));
     }
     
     /**
-     * @Route("/manage-article/{article_id}", name="manage_article")
+     * @Route("/edit-news/{news_id}", name="edit_news")
      */
-    public function manageArticleAction(Request $request, $article_id)
+    public function editNewsAction(Request $request, $news_id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $article = $em->getRepository('AppBundle:News')->find($article_id);
-        if (!$article) {
-            return $this->redirectToRoute('manage_news');
+        $news = $em->getRepository('AppBundle:News')->find($news_id);
+        if (!$news) {
+            return $this->redirectToRoute('list_news');
         }
 
-        return $this->render('AdminBundle::manage_article.html.twig', array('article' => $article));
+        return $this->render('AdminBundle::edit_news.html.twig', array('news' => $news));
     }
     
       /**
-     * @Route("/manage-users", name="manage_users")
+     * @Route("/list-users", name="list_users")
      */
-    public function manageUsersAction()
+    public function listUsersAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('AppBundle:User')->getUsersOrderByAlpha();
 
-        return $this->render('AdminBundle::manage_users.html.twig', array('users' => $users));
+        return $this->render('AdminBundle::list_users.html.twig', array('users' => $users));
     }
 
     /**
-     * @Route("/manage-user/{user_id}", name="manage_user")
+     * @Route("/edit-user/{user_id}", name="edit_user")
      */
-    public function manageUserAction(Request $request, $user_id)
+    public function editUserAction(Request $request, $user_id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $user = $em->getRepository('AppBundle:User')->find($user_id);
         if (!$user) {
-            return $this->redirectToRoute('manage_users');
+            return $this->redirectToRoute('list_users');
         }
 
-        return $this->render('AdminBundle::manage_user.html.twig', array('user' => $user));
+        return $this->render('AdminBundle::edit_user.html.twig', array('user' => $user));
     } 
     
 }

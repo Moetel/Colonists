@@ -12,9 +12,9 @@
         <tbody>
             {% for user in users %}
                 <tr>
-                    <td><a href="{{ path('manage_user', {'user_id': user.id}) }}">{{ user.username }}</a></td>
+                    <td><a href="{{ path('edit_user', {'user_id': user.id}) }}">{{ user.username }}</a></td>
                     <td>{{ user.createdAt|date('d/m/Y') }}</td>
-                    <td><a href="{{ path('manage_user', {'user_id': user.id}) }}"><span class="fa fa-edit"></span></a></td>
+                    <td><a href="{{ path('edit_user', {'user_id': user.id}) }}"><span class="fa fa-edit"></span></a></td>
                 </tr>
             {% endfor %}
         </tbody>
