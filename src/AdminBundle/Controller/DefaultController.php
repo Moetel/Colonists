@@ -21,7 +21,26 @@ class DefaultController extends Controller
      */
     public function manageNewsAction()
     {
-        return $this->render('AdminBundle::manage_news.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        
+        $news = $em->getRepository('AppBundle:News')->getAllNewsDesc();
+        
+        return $this->render('AdminBundle::manage_news.html.twig', array('news' => $news));
+    }
+    
+    /**
+     * @Route("/manage-article/{article_id}", name="manage_article")
+     */
+    public function manageArticleAction(Request $request, $article_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $article = $em->getRepository('AppBundle:News')->find($article_id);
+        if (!$article) {
+            return $this->redirectToRoute('manage_news');
+        }
+
+        return $this->render('AdminBundle::manage_article.html.twig', array('article' => $article));
     }
     
       /**
@@ -49,6 +68,6 @@ class DefaultController extends Controller
         }
 
         return $this->render('AdminBundle::manage_user.html.twig', array('user' => $user));
-    }
+    } 
     
 }

@@ -10,13 +10,13 @@
             <th>Action</th>
         </thead>
         <tbody>
-        {% for article in news %}
-            <tr>
-                <td><a href="{{ path('manage_article', {'article_id': news.id}) }}">{{ news.title }}</a></td>
-                <td>{{ news.createdAt|date('d/m/Y') }}</td>
-                <td><a href="{{ path('manage_article', {'article_id': news.id}) }}"><span class="fa fa-edit"></span></a></td>
-            </tr>
-        {% endfor %}
+            {% for article in news %}
+                <tr>
+                    <td><a href="{{ path('manage_article', {'article_id': article.id}) }}">{{ article.title }}</a></td>
+                    <td>{{ article.createdAt|date('d/m/Y') }}</td>
+                    <td><a href="{{ path('manage_article', {'article_id': article.id}) }}"><span class="fa fa-edit"></span></a></td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}
