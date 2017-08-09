@@ -15,5 +15,16 @@ class DefaultController extends Controller
     {
         return $this->render('AppBundle::homepage.html.twig');
     }
-    
+
+    /**
+     * @Route("/block-news", name="block_news")
+     */
+    public function blockNewsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $news = $em->getRepository('AppBundle:News')->getLatestNewsOrderByPublishedAt();
+
+        return $this->render('AppBundle::block_news.html.twig', array('news' => $news));
+    }
 }
