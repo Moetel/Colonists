@@ -17,7 +17,7 @@ class NewsRepository extends EntityRepository
         return $this->createQueryBuilder('n')
             ->where('n.isPublished = 1')
             ->orderBy('n.publishedAt', 'DESC')
-            ->setMaxResults(3)
+            ->setMaxResults(5)
             ->getQuery()
             ->getResult();
     }
