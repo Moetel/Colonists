@@ -18,5 +18,9 @@ class DefaultController extends Controller
         $news = $em->getRepository('AppBundle:News')->getLatestNewsOrderByPublishedAt();
 
         return $this->render('AppBundle::homepage.html.twig', array('news' => $news));
+
+        $user = $em->getRepository('AppBundle:User')->getUsersOrderByAlpha();
+
+        return $this->render('AppBundle::homepage.html.twig', array('news' => $user));
     }
 }
