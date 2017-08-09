@@ -1,18 +1,6 @@
-{% extends 'AppBundle::homepage.html.twig' %}
-
-{% block block_news %}
-
-<p>Ceci est un test</p>
-
-<div class="container">
-    {% for article in news %}
-        <div class="row">
-            <div class="col-md-8">
-
-                <blockquote>{{ article.title }}</blockquote>
-
-            </div>
-        </div>
-    {% endfor %}
-</div>
-{% endblock %}
+<h1>NEWS</h1>
+{% for article in news %}
+    <div class="row">
+        <blockquote>{{ article.title }}</blockquote>
+    </div>
+{% endfor %}

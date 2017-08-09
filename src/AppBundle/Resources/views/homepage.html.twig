@@ -1,10 +1,12 @@
 {% extends 'AppBundle::index.html.twig' %}
 
 {% block content_page %}
-
-
-    <p>CONTENT HOMEPAGE</p>
-
-    {% block block_news %}{% endblock %} 
-
+    <div class="col-md-12">
+        <div class="col-md-8">
+            {% include 'AppBundle::block_news.html.twig' with {'news': news} %}
+        </div>
+        <div class="col-md-4">
+            Recap' Profil
+        </div>
+    </div>
 {% endblock %}
