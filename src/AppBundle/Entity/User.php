@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 use FOS\UserBundle\Model\User as BaseUser;
@@ -25,6 +26,35 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\JoinTable(name="friend_list",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="friend_id", referencedColumnName="id")}
+     *      )
+     */
+    private $friends;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Instance", inversedBy="users")
+     * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
+     */
+    private $instance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="score", type="integer")
+     */
+    protected $score;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="high_score", type="integer")
+     */
+    protected $highScore;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
@@ -38,6 +68,13 @@ class User extends BaseUser
      */
     private $updatedAt;
 
+
+    public function __construct() {
+        parent::__construct();
+        $this->friends = new ArrayCollection();
+    }
+
+
     /**
      * Get id
      *
@@ -46,6 +83,77 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set instance
+     *
+     * @param Instance $instance
+     * @return User
+     */
+    public function setInstance(Instance $instance)
+    {
+        $this->instance = $instance;
+
+        return $this;
+    }
+
+    /**
+     * Get instance
+     *
+     * @return Instance
+     */
+    public function getInstance()
+    {
+        return $this->instance;
+    }
+
+    /**
+     * Set score
+     *
+     * @param integer $score
+     *
+     * @return User
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+
+        return $this;
+    }
+
+    /**
+     * Get score
+     *
+     * @return integer
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * Set highScore
+     *
+     * @param integer $highScore
+     *
+     * @return User
+     */
+    public function setHighScore($highScore)
+    {
+        $this->highScore = $highScore;
+
+        return $this;
+    }
+
+    /**
+     * Get highScore
+     *
+     * @return integer
+     */
+    public function getHighScore()
+    {
+        return $this->highScore;
     }
 
     /**
@@ -92,6 +200,25 @@ class User extends BaseUser
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+
+    public function addFriend(User $friend)
+    {
+        if (!$this->friends->contains($friend))
+            $this->friends[] = $friend;
+
+        return $this;
+    }
+
+    public function removeFriend(User $friend)
+    {
+        $this->friends->removeElement($friend);
+    }
+
+    public function getFriends()
+    {
+        return $this->friends;
     }
 
 

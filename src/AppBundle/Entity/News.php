@@ -39,7 +39,7 @@ class News
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_published", type="boolean", length=255)
+     * @ORM\Column(name="is_published", type="boolean")
      */
     protected $isPublished;
 
