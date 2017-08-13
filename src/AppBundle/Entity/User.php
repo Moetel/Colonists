@@ -43,14 +43,14 @@ class User extends BaseUser
     /**
      * @var integer
      *
-     * @ORM\Column(name="score", type="integer")
+     * @ORM\Column(name="score", type="integer", nullable=true)
      */
     protected $score;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="high_score", type="integer")
+     * @ORM\Column(name="high_score", type="integer", nullable=true)
      */
     protected $highScore;
 
