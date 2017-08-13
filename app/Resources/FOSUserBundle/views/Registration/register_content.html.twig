@@ -1,50 +1,37 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<h2 class="form-register-heading">Registration</h2>
-<form name="fos_user_registration_form" method="post" action="/app_dev.php/register/" class="fos_user_registration_register">
-    <div class="form-group">
-        <div class="bg-danger">
+<h2 class="text-center">Registration</h2>
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
-        </div>
-        <label for="fos_user_registration_form_email" class="required">Email</label>
-        <input id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required" class="form-control" type="email" placeholder="Email">
-    </div><div class="form-group">
-        <div class="bg-danger">
-
-        </div>
-        <label for="fos_user_registration_form_username" class="required">Username</label>
-        <input id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="180" pattern=".{2,}" class="form-control" type="text" placeholder="Username">
-    </div><div class="form-group">
-        <div class="bg-danger">
-
-        </div>
-        <label for="fos_user_registration_form_plainPassword_first" class="required">Password</label>
-        <input id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" class="form-control" type="password" placeholder="Password">
-    </div><div class="form-group">
-        <div class="bg-danger">
-
-        </div>
-        <label for="fos_user_registration_form_plainPassword_second" class="required">Repeat password</label>
-        <input id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" class="form-control" type="password" placeholder="Password">
+<div class="form-group">
+    <div class="bg-danger">
+        {{ form_errors(form.email) }}
     </div>
-    <div id="fos_user_registration_form"><input id="fos_user_registration_form__token" name="fos_user_registration_form[_token]" value="RqJ4VRvVQ07-OA2eBM82IvTxo7yYojs-zrZiJyNx7XE" type="hidden">
+    {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans}}) }}
+</div>
+
+<div class="form-group">
+    <div class="bg-danger">
+        {{ form_errors(form.username) }}
     </div>
-    <div>
-        <input class="btn btn-primary btn-block btn-lg" value="Register" type="submit">
+    {{ form_widget(form.username, {'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans}}) }}
+</div>
+
+<div class="form-group">
+    <div class="bg-danger">
+        {{ form_errors(form.plainPassword.first) }}
     </div>
+    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans}}) }}
+</div>
 
-</form>
+<div class="form-group">
+    <div class="bg-danger">
+        {{ form_errors(form.plainPassword.second) }}
+    </div>
+    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans}}) }}
+</div>
 
-
-{#{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}#}
-
-{#{% include 'AppBundle:Form:draw_form_item.html.twig' with {'item': form.email} %}#}
-{#{% include 'AppBundle:Form:draw_form_item.html.twig' with {'item': form.username} %}#}
-{#{% include 'AppBundle:Form:draw_form_item.html.twig' with {'item': form.plainPassword.first} %}#}
-{#{% include 'AppBundle:Form:draw_form_item.html.twig' with {'item': form.plainPassword.second} %}#}
-
-{#{{ form_widget(form) }}#}
-{#<div>#}
-    {#<input type="submit" class="btn btn-primary btn-block btn-lg" value="{{ 'registration.submit'|trans }}" />#}
-{#</div>#}
-{#{{ form_end(form) }}#}
+<div>
+    <input type="submit" class="btn btn-primary btn-block btn-lg" value="{{ 'registration.submit'|trans }}"/>
+</div>
+{{ form_end(form) }}
