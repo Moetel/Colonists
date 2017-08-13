@@ -15,6 +15,7 @@
                         {{ render(controller('FOSUserBundle:Registration:register')) }}
                     {% endif %}
                 {% else %}
+                    <h2>{{ app.user.username }}</h2>
                 {% endif %}
             </div>
         </div>
