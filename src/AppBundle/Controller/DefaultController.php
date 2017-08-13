@@ -15,12 +15,15 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $specified_page = $request->get('page');
+
+        if ($specified_page != "" && $this->getUser() && $this->isGranted('IS_AUTHENTICATED_FULLY'))
+            return $this->redirectToRoute('homepage');
+        else if (!$specified_page && !$this->getUser() && !$this->isGranted('IS_AUTHENTICATED_FULLY'))
+            return $this->redirectToRoute('homepage', array('page' => 'login'));
+
         $news = $em->getRepository('AppBundle:News')->getLatestNewsOrderByPublishedAt();
 
-        return $this->render('AppBundle::homepage.html.twig', array('news' => $news));
-
-        $user = $em->getRepository('AppBundle:User')->getUsersOrderByAlpha();
-
-        return $this->render('AppBundle::homepage.html.twig', array('news' => $user));
+        return $this->render('AppBundle::homepage.html.twig', array('news' => $news, 'specified_page' => $specified_page));
     }
 }
