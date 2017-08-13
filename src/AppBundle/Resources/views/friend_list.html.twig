@@ -1,0 +1,12 @@
+{% extends 'AppBundle::index.html.twig' %}
+
+{% block content_page %}
+    {% if friend_list is empty %}
+        <p>No friends.</p>
+    {% endif %}
+
+    {% for friend in friend_list %}
+        <p>{{ friend.username }}</p>
+    {% endfor %}
+    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-primary">Back</a>
+{% endblock %}
