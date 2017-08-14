@@ -17,6 +17,17 @@
                 {% else %}
                     <h2>{{ app.user.username }}</h2>
                     <a href="{{ path('fos_user_profile_show') }}">Details</a>
+                    <hr />
+                    <h4>All Season</h4>
+                    <p>High Score : {{ app.user.highscore }}</p>
+                    <hr />
+                    <h4>This Season</h4>
+                    <p>Score : {{ app.user.score }}</p>
+                    <hr />
+
+                    <div style="text-align: center">
+                        <a href="" class="btn btn-danger">Enter Deep Space !</a>
+                    </div>
                 {% endif %}
             </div>
         </div>
