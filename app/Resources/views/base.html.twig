@@ -37,5 +37,42 @@
 
 
         {% block javascripts %}{% endblock %}
+        <script>
+            $(document).ready(function() {
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    $.ajax({
+                        method: "POST",
+                        url: "{{ path('get_notifications') }}"
+                    })
+                    .done(function(data) {
+                        console.log(data);
+
+                        if (data.success) {
+                            var obj = data.unread_notifs;
+                            var len = 0;
+
+                            $.each(obj, function(i, el) {
+                                $('.notification-list').html(
+                                    '<li>' +
+                                    '<p><img class="img-notif" width="20px" height="20px" alt="icon-notif" />' + el.message + '</p>' +
+                                    '<p style="color:#666666">' + el.date + '</p>' +
+                                    '</li>'
+                                );
+
+                                len++;
+                            });
+
+                            if (len == 0) {
+                                $('.notification-list').html('<li><p>No notifs.</p></li>');
+                            }
+                        }
+                    });
+
+                    $('.notification-bell').click(function() {
+                       $('.notification-list').toggle();
+                    });
+                {% endif %}
+            });
+        </script>
     </body>
 </html>

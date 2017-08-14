@@ -37,7 +37,14 @@ class Notification
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="message", type="string", length=255, nullable=true)
+     */
+    private $message;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
     private $url;
 
@@ -117,6 +124,30 @@ class Notification
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     *
+     * @return Notification
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 
     /**

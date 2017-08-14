@@ -26,6 +26,10 @@
                     </li>
                 {% endif %}
                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <li>
+                        <a class="notification-bell" style="cursor: pointer"><span class="fa fa-bell"></span></a>
+                        <div class="notification-list" role="dialog" style="display: none; background-color:#FFF; position: absolute; right: 1px; width: 400px; z-index: 1"></div>
+                    </li>
                     <p class="navbar-text">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</p>
                     <li>
                         <a href="{{ path('fos_user_security_logout') }}"><span class="fa fa-sign-out"></span> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>

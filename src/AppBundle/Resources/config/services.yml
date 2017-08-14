@@ -1,0 +1,4 @@
+services:
+    app.notification_manager:
+        class: AppBundle\Services\NotificationManager
+        arguments: ['@doctrine.orm.entity_manager']
