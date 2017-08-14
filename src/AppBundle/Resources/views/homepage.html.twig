@@ -1,7 +1,6 @@
 {% extends 'AppBundle::index.html.twig' %}
 
 {% block content_page %}
-    <div class="container-fluid well well-lg">
         <div class="col-md-9 well well-sm">
             <h1 class="text-primary">News</h1>
             {% include 'AppBundle::block_news.html.twig' with {'news': news} %}
@@ -20,16 +19,17 @@
                     <hr />
                     <h4>All Season</h4>
                     <p>High Score : {{ app.user.highscore }}</p>
+                    <p>Rank : ?</p>
                     <hr />
                     <h4>This Season</h4>
                     <p>Score : {{ app.user.score }}</p>
+                    <p>Rank : ?</p>
                     <hr />
 
                     <div style="text-align: center">
-                        <a href="" class="btn btn-danger">Enter Deep Space !</a>
+                        <a href="{{ path('instance') }}" class="btn btn-danger">Enter Deep Space !</a>
                     </div>
                 {% endif %}
             </div>
         </div>
-    </div>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Notification;
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,6 +18,7 @@ class ServerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** @var User $user */
         $user = $this->getUser();
 
         if (!$user && !$this->isGranted('IS_AUTHENTICATED_FULLY'))

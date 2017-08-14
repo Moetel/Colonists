@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** @var User $user */
         $user = $this->getUser();
 
         $specified_page = $request->get('page');
@@ -36,10 +38,31 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** @var User $user */
         $user = $this->getUser();
+        if (!$user)
+            return $this->redirectToRoute('homepage');
 
         $friend_list = $user->getFriends();
 
         return $this->render('AppBundle::friend_list.html.twig', array('friend_list' => $friend_list));
+    }
+
+    /**
+     * @Route("/instance", name="instance")
+     */
+    public function instanceAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$user)
+            return $this->redirectToRoute('homepage');
+
+        if ($user->getInstance() == null)
+            return $this->render('AppBundle::create_instance.html.twig', array('user' => $user));
+
+        return $this->render('AppBundle::instance.html.twig', array('user' => $user, 'instance' => $user->getInstance()));
     }
 }
