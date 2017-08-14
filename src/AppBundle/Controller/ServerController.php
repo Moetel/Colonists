@@ -30,7 +30,7 @@ class ServerController extends Controller
         foreach ($notifs as $notif) {
             $unread_notifs[$i]['message'] = $notif->getMessage();
             $unread_notifs[$i]['url'] = $notif->getUrl();
-            $unread_notifs[$i]['date'] = $notif->getCreatedAt()->format('d/m/Y');
+            $unread_notifs[$i]['date'] = $notif->getCreatedAt()->format('H:i d/m/Y');
 
             $i++;
         }
