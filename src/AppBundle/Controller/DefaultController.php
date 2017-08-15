@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Instance;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -64,5 +65,39 @@ class DefaultController extends Controller
             return $this->render('AppBundle::create_instance.html.twig', array('user' => $user));
 
         return $this->render('AppBundle::instance.html.twig', array('user' => $user, 'instance' => $user->getInstance()));
+    }
+
+    /**
+     * @Route("/create-instance", name="create_instance")
+     */
+    public function createInstanceAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$user)
+            return $this->redirectToRoute('homepage');
+
+        if ($user->getInstance() != null)
+            return $this->redirectToRoute('instance');
+
+        /** @var Instance $instance */
+        $instance = $em->getRepository('AppBundle:Instance')->getFreeInstance();
+        if (!$instance) {
+            $instance = new Instance();
+            $instance->setIsFull(false);
+            $instance->setSize(10);
+        }
+
+        $instance->addUser($user);
+
+        if ($instance->getNbUsers() == $instance->getSize())
+            $instance->setIsFull(true);
+
+        $em->persist($instance);
+        $em->flush();
+
+        return $this->redirectToRoute('instance');
     }
 }

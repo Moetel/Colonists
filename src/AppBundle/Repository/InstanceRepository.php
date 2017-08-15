@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class InstanceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getFreeInstance()
+    {
+        return $this->createQueryBuilder('i')
+            ->where('i.isFull = 0')
+            ->getQuery()
+            ->getFirstResult();
+    }
 }

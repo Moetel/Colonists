@@ -29,6 +29,13 @@ class Instance
     private $users;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_full", type="boolean")
+     */
+    private $isFull;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="size", type="integer")
@@ -64,6 +71,30 @@ class Instance
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set isFull
+     *
+     * @param boolean $isFull
+     *
+     * @return Notification
+     */
+    public function setIsFull($isFull)
+    {
+        $this->isFull = $isFull;
+
+        return $this;
+    }
+
+    /**
+     * Get isFull
+     *
+     * @return bool
+     */
+    public function getIsFull()
+    {
+        return $this->isFull;
     }
 
     /**
@@ -155,6 +186,11 @@ class Instance
     public function getUsers()
     {
         return $this->users;
+    }
+
+    public function getNbUsers()
+    {
+        return count($this->users);
     }
 
 
