@@ -1,5 +1,23 @@
 {% extends 'AppBundle::index.html.twig' %}
 
 {% block content_page %}
-    <h2>Create Instance</h2>
+    <div class="col-md-12 well well-sm">
+        <h1 class="text-primary text-center">Create Instance</h1>
+
+        <div class="col-md-12 well well-sm">
+            <h2 class="text-primary text-center">Choose Character</h2>
+            List character choice here...
+        </div>
+
+        <div class="col-md-12 well well-sm">
+            <h2 class="text-primary text-center">Pick Upgrades</h2>
+            List possible upgrades using point here...
+        </div>
+
+        <div class="col-md-12 well well-sm text-center">
+            <a href="{{ path('homepage') }}" class="btn btn-lg btn-danger">Start !</a>
+        </div>
+    </div>
+
+
 {% endblock %}
