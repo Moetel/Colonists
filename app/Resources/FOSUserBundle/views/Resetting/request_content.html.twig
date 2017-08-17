@@ -1,11 +1,13 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-    <div>
-        <label for="username">{{ 'resetting.request.username'|trans }}</label>
-        <input type="text" id="username" name="username" required="required" />
+    
+    <h2 class="form-singnin-heading text-center">{{ 'Reset'|trans }}</h2>
+    
+    <div class="form-group">
+        <label class="sr-only" for="username">{{ 'resetting.request.username'|trans }}</label>
+        <input class="form-control" type="text" id="username" name="username" required="required" placeholder="{{ 'resetting.request.username'|trans }}"/>
     </div>
-    <div>
-        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" />
-    </div>
+    
+        <input class="btn btn-lg btn-primary btn-block" id="_submit" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
 </form>

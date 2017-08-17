@@ -12,6 +12,8 @@
                         {{ render(controller('FOSUserBundle:Security:login')) }}
                     {% elseif specified_page == 'register' %}
                         {{ render(controller('FOSUserBundle:Registration:register')) }}
+                    {% elseif specified_page == 'reset' %}    
+                        {{ render(controller('FOSUserBundle:Resetting:request')) }}
                     {% endif %}
                 {% else %}
                     <h2>{{ app.user.username }}</h2>
