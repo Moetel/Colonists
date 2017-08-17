@@ -1,21 +1,29 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="container">
-    <h1 class="text-center">Profile: {{ user.username }}</h1>
-
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-
-    <ul>
-        <li>
-            <a href="{{ path('friend_list') }}">Friends</a>
-        </li>
-        <li>
-            <a href="{{ path('fos_user_profile_edit') }}">Edit Profile</a>
-        </li>
-        <li>
-            <a href="{{ path('fos_user_change_password') }}">Change Password</a>
-        </li>
-    </ul>
-
-    <a href="{{ path('homepage') }}" class="btn btn-primary">< Homepage</a>
+    <div class="row">
+        <ol class="breadcrumb col-md-6">
+            <li><a href="{{ path('homepage') }}">Homepage</a></li>
+            <li class="active">Profile</li>
+        </ol>
+        <p class="text-center lead text-primary col-md-6">Profile : {{ user.username }}</p>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="{{ path('friend_list') }}">Friends</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ path('fos_user_profile_edit') }}">Edit Profile</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ path('fos_user_change_password') }}">Change Password</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10 well well-lg">
+            <p class=""><strong>{{ 'profile.show.email'|trans }} :</strong> {{ user.email }}</p>
+        </div>
+    </div>
 </div>
